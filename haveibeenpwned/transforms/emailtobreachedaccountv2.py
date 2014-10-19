@@ -22,8 +22,11 @@ try:
     response = urllib2.urlopen(getrequrl)
     data = json.loads(response.read())
     response = data
+    maltego_entity_weight = 1
     for breached in response:
-        mt.addEntity("maltego.Domain", breached['Domain'])
+        maltego_entity = mt.addEntity("maltego.Domain", breached['Domain'])
+        maltego_entity.setWeight(maltego_entity_weight)
+        maltego_entity_weight += 1 
 
 except urllib2.URLError, e:  # "Response Codes" within https://haveibeenpwned.com/API/v1
     
