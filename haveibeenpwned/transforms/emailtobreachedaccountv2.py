@@ -28,10 +28,13 @@ try:
         maltego_entity.setWeight(maltego_entity_weight)
         maltego_entity_weight += 1 
 
-except urllib2.URLError, e:  # "Response Codes" within https://haveibeenpwned.com/API/v1
+except urllib2.URLError, e:  # https://haveibeenpwned.com/API/v2#ResponseCodes
     
     if e.code == 400:
         mt.addUIMessage("The e-mail account does not comply with an acceptable format", messageType="PartialError")
+
+    if e.code == 403:
+        mt.addUIMessage("No user agent has been specified in the request", messageType="PartialError")
     
     if e.code == 404:
         UIMessage = email + " could not be found and has therefore not been pwned"
