@@ -21,6 +21,8 @@ HIBP = "https://haveibeenpwned.com/api/v2/breachedaccount/"  # https://haveibeen
 mt = MaltegoTransform()
 mt.parseArguments(sys.argv)
 email = mt.getValue()
+
+email = urllib2.quote(email)  # "The account should always be URL encoded" within https://haveibeenpwned.com/API/v2#BreachesForAccount
 mt = MaltegoTransform()
 getrequrl = HIBP + email
 
