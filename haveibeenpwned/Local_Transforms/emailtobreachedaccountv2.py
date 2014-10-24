@@ -3,6 +3,7 @@
 import sys
 import urllib2
 import json
+import re
 
 from MaltegoTransform import *
 
@@ -21,6 +22,11 @@ __status__ = 'Development'
 mt = MaltegoTransform()
 mt.parseArguments(sys.argv)
 email = mt.getValue()
+
+if not re.match(r"[^@]+@[^@]+\.[^@]+", email):  # http://stackoverflow.com/a/8022584  
+    mt.addUIMessage("The e-mail account does not comply with an acceptable format", messageType="PartialError")
+    mt.returnOutput()
+    exit()
 email = urllib2.quote(email)  # "The account should always be URL encoded" within https://haveibeenpwned.com/API/v2#BreachesForAccount
 
 getrequrl = HIBP + email
@@ -42,7 +48,7 @@ try:
 except urllib2.URLError, e:  # "Response Codes" within https://haveibeenpwned.com/API/v2#ResponseCodes
     
     if e.code == 400:
-        mt.addUIMessage("The e-mail account does not comply with an acceptable format",messageType="PartialError")
+        mt.addUIMessage("The e-mail account does not comply with an acceptable format", messageType="PartialError")
 
     if e.code == 403:
         mt.addUIMessage("No user agent has been specified in the request", messageType="PartialError")
