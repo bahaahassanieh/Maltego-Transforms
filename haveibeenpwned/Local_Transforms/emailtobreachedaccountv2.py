@@ -8,6 +8,16 @@ from MaltegoTransform import *
 
 HIBP = "https://haveibeenpwned.com/api/v2/breachedaccount/"  # https://haveibeenpwned.com/API/v2#BreachesForAccount
 
+__author__ = 'Christian Heinrich'
+__copyright__ = 'Copyright 2014, cmlh.id.au'
+__credits__ = ['Sudhanshu Chauhan']
+
+__license__ = 'GPL'
+__version__ = '0.1'
+__maintainer__ = 'Christian Heinrich'
+__email__ = 'christian.heinrich@cmlh.id.au'
+__status__ = 'Development'
+
 mt = MaltegoTransform()
 mt.parseArguments(sys.argv)
 email = mt.getValue()
