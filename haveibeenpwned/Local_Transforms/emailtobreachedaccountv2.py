@@ -21,9 +21,9 @@ __status__ = 'Development'
 mt = MaltegoTransform()
 mt.parseArguments(sys.argv)
 email = mt.getValue()
-mt = MaltegoTransform()
-getrequrl = HIBP + email
+email = urllib2.quote(email)  # "The account should always be URL encoded" within https://haveibeenpwned.com/API/v2#BreachesForAccount
 
+getrequrl = HIBP + email
 request = urllib2.Request(getrequrl)
 request.add_header('User-Agent','github.com/@SudhanshuC/Maltego-Transforms')  # https://haveibeenpwned.com/API/v2#UserAgent 
 opener = urllib2.build_opener()
