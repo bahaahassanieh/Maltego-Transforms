@@ -1,12 +1,4 @@
 #!/usr/bin/python
-   
-#EmailtoHIBP.py
-#Author: Sudhanshu Chauhan - @Sudhanshu_C
-     
-#This Script will retrieve the Domain(s) at which the specified account has been compromised
-#It uses the API provided by https://haveibeenpwned.com/
-#Special Thanks to Troy Hunt - http://www.troyhunt.com/
-#For MaltegoTransform library and Installation guidelines go to http://www.paterva.com/web6/documentation/developer-local.php
 
 import sys
 import urllib2
@@ -14,7 +6,7 @@ import json
 
 from MaltegoTransform import *
 
-HIBP = "https://haveibeenpwned.com/api/breachedaccount/"
+HIBP = "https://haveibeenpwned.com/api/v2/breachedaccount/"  # https://haveibeenpwned.com/API/v2#BreachesForAccount
 
 mt = MaltegoTransform()
 mt.parseArguments(sys.argv)
@@ -22,12 +14,16 @@ email = mt.getValue()
 mt = MaltegoTransform()
 getrequrl = HIBP + email
 
+request = urllib2.Request(getrequrl)
+request.add_header('User-Agent','github.com/@SudhanshuC/Maltego-Transforms')  # https://haveibeenpwned.com/API/v2#UserAgent 
+opener = urllib2.build_opener()
+
 try:
     response = urllib2.urlopen(getrequrl)
-    data = json.load(response)
+    data = json.loads(response.read())
     response = data
-    for rep in response:
-        mt.addEntity("maltego.Phrase","Pwned at " + rep)
+    for breached in response:
+        mt.addEntity("maltego.Domain",breached['Domain'])
 
 except urllib2.URLError, e:  # "Response Codes" within https://haveibeenpwned.com/API/v1
     
