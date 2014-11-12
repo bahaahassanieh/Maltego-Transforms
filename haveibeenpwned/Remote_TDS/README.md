@@ -2,7 +2,7 @@
 
 The latest instructions are published at [`https://github.com/cmlh/Maltego-haveibeenpwned/wiki`](https://github.com/cmlh/Maltego-haveibeenpwned/wiki) too
 
-1. Download the Maltego Configuration File from [`https://github.com/cmlh/Maltego-Transforms/releases`](https://github.com/cmlh/Maltego-Transforms/releases)
+1.Download the Maltego Configuration File from [`https://github.com/cmlh/Maltego-Transforms/releases`](https://github.com/cmlh/Maltego-Transforms/releases)
 
 2.Click <i>Import Configuration</i>.
 
