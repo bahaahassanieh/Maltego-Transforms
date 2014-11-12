@@ -18,4 +18,4 @@ Installation guidelines: http://www.paterva.com/web6/documentation/developer-loc
 ***
 # @haveibeenpwned - Remote TDS Configuration
 
-Instructions available in the [`./haveibeenpwned/Remote_TDS` directory](https://github.com/SudhanshuC/Maltego-Transforms/blob/master/haveibeenpwned/Remote_TDS/README.md)
+Instructions available in the [`haveibeenpwned/Remote_TDS` directory](https://github.com/SudhanshuC/Maltego-Transforms/blob/master/haveibeenpwned/Remote_TDS/README.md)
